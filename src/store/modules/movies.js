@@ -1,8 +1,12 @@
+import IDs from "@/store/mock/my-favorites-250-films";
 import axios from "@/plugins/axios";
 
 const moviesStore = {
   namespaced: true,
-  state: {},
+
+  state: {
+    top250IDs: IDs,
+  },
   getters: {},
   mutations: {},
   actions: {
