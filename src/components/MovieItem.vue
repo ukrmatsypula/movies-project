@@ -1,6 +1,21 @@
 <template>
   <div class="movie-item mb-3">
-    <div class="movie-item__poster" :style="posterBg"></div>
+    <div class="movie-item__poster" :style="posterBg">
+      <div class="movie-info-wrap">
+        <div class="movie__item-info">
+          <h3 class="movie__title">{{ movie.Title }}</h3>
+          <span class="movie__year">{{ movie.Year }}</span>
+        </div>
+        <div class="movie-item__controls row no-gutters">
+          <div class="col">
+            <BButton size="md" block variant="outline-light">Edit</BButton>
+          </div>
+          <div class="col">
+            <BButton size="md" variant="outline-light">Remove</BButton>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,6 +39,15 @@ export default {
 </script>
 
 <style scoped>
+.movie-info-wrap {
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 .movie-item {
   position: relative;
   cursor: pointer;
@@ -44,9 +68,28 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: -1;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.movie__title {
+  font-size: 20px;
+  color: #fff;
+}
+
+.movie__year {
+  font-size: 14px;
+  color: #fff;
+}
+
+.movie-item:hover .movie-info-wrap {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.movie-item__controls button {
+  width: 100%;
 }
 </style>
