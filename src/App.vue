@@ -37,6 +37,7 @@ export default {
       this.posterBg = poster;
     },
     onPageChanged(page) {
+      this.$router.push({ query: { page } });
       this.changeCurrentPage(page);
     },
   },
