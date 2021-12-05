@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header />
     <Loader />
     <PosterBg :poster="posterBg" />
     <MoviesList :list="moviesList" @changePoster="onChangePoster" />
@@ -18,10 +19,11 @@ import MoviesList from "@/components/MoviesList";
 import PosterBg from "@/components/PosterBg";
 import MoviesPagination from "@/components/MoviesPagination";
 import Loader from "@/components/Loader";
+import Header from "@/components/Header";
 
 export default {
   name: "App",
-  components: { MoviesList, PosterBg, MoviesPagination, Loader },
+  components: { MoviesList, PosterBg, MoviesPagination, Loader, Header },
   computed: {
     ...mapGetters("movies", [
       "moviesList",
