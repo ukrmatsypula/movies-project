@@ -1,6 +1,6 @@
 <template>
   <BContainer>
-    <h3 class="list-title">IMDB Top {{ moviesLength }}</h3>
+    <h3 class="list-title">{{ listTitle }}</h3>
     <BRow>
       <template v-if="isExist">
         <BCol cols="3" v-for="(movie, key) in list" :key="key">
@@ -34,9 +34,14 @@ export default {
     MovieItem,
   },
   computed: {
-    ...mapGetters("movies", ["moviesLength"]),
+    ...mapGetters("movies", ["moviesLength", "isSearch", "resultLength"]),
     isExist() {
       return Boolean(Object.keys(this.list).length);
+    },
+    listTitle() {
+      return this.isSearch
+        ? `Search result ${this.resultLength}`
+        : `IMDB Top ${this.moviesLength}`;
     },
   },
   methods: {
