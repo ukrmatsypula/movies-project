@@ -3,7 +3,12 @@
     <h3 class="list-title">{{ listTitle }}</h3>
     <BRow>
       <template v-if="isExist">
-        <BCol cols="3" v-for="(movie, key) in list" :key="key">
+        <BCol
+          class="col-sm-6 col-lg-4 col-xl-3 col-xxl-3"
+          cols="12"
+          v-for="(movie, key) in list"
+          :key="key"
+        >
           <MovieItem
             :movie="movie"
             @mouseover.native="onMouseOver(movie.Poster)"
@@ -46,6 +51,7 @@ export default {
   },
   methods: {
     ...mapActions("movies", ["removeMovies"]),
+    ...mapActions(["showNotify"]),
     onMouseOver(poster) {
       this.$emit("changePoster", poster);
     },
@@ -56,6 +62,11 @@ export default {
 
       if (isConfirmed) {
         this.removeMovies(id);
+        this.showNotify({
+          msg: "Movie deleted successfull",
+          variant: "success",
+          title: "Success",
+        });
       }
     },
   },

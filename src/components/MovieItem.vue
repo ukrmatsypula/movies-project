@@ -7,11 +7,15 @@
           <span class="movie__year">{{ movie.Year }}</span>
         </div>
         <div class="movie-item__controls row no-gutters">
-          <div class="col">
+          <div class="col mr-2">
             <BButton size="md" block variant="outline-light">Edit</BButton>
           </div>
-          <div class="col">
-            <BButton size="md" variant="outline-light" @click="emitRemoveEvent"
+          <div class="col ml-2">
+            <BButton
+              size="md"
+              block
+              variant="outline-light"
+              @click="emitRemoveEvent"
               >Remove</BButton
             >
           </div>
@@ -33,7 +37,11 @@ export default {
   computed: {
     posterBg() {
       return {
-        "background-image": `url(${this.movie.Poster})`,
+        "background-image": `url(${
+          this.movie.Poster !== "N/A"
+            ? this.movie.Poster
+            : "https://via.placeholder.com/400"
+        })`,
       };
     },
   },
@@ -97,9 +105,5 @@ export default {
 .movie-item:hover .movie-info-wrap {
   opacity: 1;
   background: rgba(0, 0, 0, 0.7);
-}
-
-.movie-item__controls button {
-  width: 100%;
 }
 </style>

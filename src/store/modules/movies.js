@@ -78,7 +78,6 @@ const moviesStore = {
     },
     removeMovies({ commit, dispatch, state }, id) {
       const index = state.top250IDs.findIndex((item) => item === id);
-      console.log(index);
       if (index !== -1) {
         commit(REMOVE_MOVIE, index);
         dispatch("fetchMovies");
@@ -98,7 +97,16 @@ const moviesStore = {
         commit(RESULT_LENGTH, movies);
         commit(MOVIES, movies);
       } catch (err) {
-        console.log(err.message);
+        dispatch(
+          "showNotify",
+          {
+            msg: err.message,
+            variant: "danger",
+            title: "Error",
+          },
+          { root: true }
+        );
+        commit(RESULT_LENGTH, 0);
       } finally {
         dispatch("toggleLoader", false, { root: true });
       }
